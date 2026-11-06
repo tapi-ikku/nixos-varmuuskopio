@@ -15,8 +15,19 @@
     options = "--delete-older-than 7d";
      };
 
-     system.autoUpgrade.enable = true;
-     system.autoUpgrade.allowReboot = true;
+     system.autoUpgrade = {
+     	enable = true;
+     	allowReboot = false;
+     	flake = "git+file:///home/tapsa/:dotfiles#nixos";
+     	dates = "daily";
+     };
+
+  nix.optimise = {
+  	automatic = true;
+  	dates = ["weekly"];
+  };
+     
+   
      
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -83,7 +94,9 @@
       space-cadet-pinball
       libreoffice
       supertuxkart
-      shotwell 
+      shotwell
+      impression
+      nixd 
       ];
 
       programs.git = {
@@ -141,9 +154,12 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
   services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;  
   services.flatpak.enable = true;
   services.printing = {
