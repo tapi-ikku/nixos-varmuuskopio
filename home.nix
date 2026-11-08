@@ -6,6 +6,7 @@
 
 	# Home Manager -versio
 	home.stateVersion = "26.05";
+	home.enableNixpkgsReleaseCheck = false;
 
 	# Tänne voit myöhemmin lisätä käyttäjäkohtaisia paketteja
 	home.packages = with pkgs; [
